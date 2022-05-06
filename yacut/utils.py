@@ -1,11 +1,11 @@
 import random
 
-from . import constants
+from . import constants as cst
 from .models import URL_map
 
 
-def get_unique_short_id(symbols=constants.SYMBOLS,
-                        length=constants.LEN_SHORT_URL):
+def get_unique_short_id(symbols=cst.SYMBOLS,
+                        length=cst.LEN_SHORT_URL):
     url_link = ''
     for char in range(length):
         url_link += random.choice(symbols)

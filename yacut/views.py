@@ -1,6 +1,8 @@
 from flask import render_template, flash, abort, redirect
 
-from . import app, db
+from http import HTTPStatus
+
+from . import app, db, constants as cnt
 from .forms import URLForm
 from .models import URL_map
 from .utils import check_short_url, get_unique_short_id
@@ -14,17 +16,17 @@ def index_view():
         short = form.custom_id.data
         if short:
             if check_short_url(short):
-                flash(f'Имя занято {short} уже занято!')
+                flash(cnt.NAME_BUSY.format(short))
                 return render_template('main_page.html', form=form)
         if short is None:
             short = get_unique_short_id()
         url_link = URL_map(
-                original=original,
-                short=short
-            )
+            original=original,
+            short=short
+        )
         db.session.add(url_link)
         db.session.commit()
-        flash('Ваша новая ссылка готова:')
+        flash(cnt.URL_READY)
         flash(short)
     return render_template('main_page.html', form=form)
 
@@ -33,5 +35,5 @@ def index_view():
 def redirect_to_url(short_url):
     original_url = URL_map.query.filter_by(short=short_url).first()
     if original_url is None:
-        abort(404)
+        abort(HTTPStatus.NOT_FOUND)
     return redirect(original_url.original)

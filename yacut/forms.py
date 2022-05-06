@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, URLField
 from wtforms.validators import DataRequired, Optional, URL, Regexp
 
-from .constants import PATTERN
+from . import constants as cst
 
 
 class URLForm(FlaskForm):
@@ -17,10 +17,9 @@ class URLForm(FlaskForm):
         label='Ваш вариант короткой ссылки',
         validators=(
             Optional(),
-            Regexp(PATTERN,
+            Regexp(cst.PATTERN,
                    message='Допускается только латиница и арабские цифры. '
                            'Максимальная длина ссылки: 16 символов')
         )
     )
     submit = SubmitField('Создать')
-
