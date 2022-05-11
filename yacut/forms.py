@@ -18,7 +18,7 @@ class URLForm(FlaskForm):
         validators=(
             Optional(),
             Length(cst.MIN_LEN_SHORT_URL,
-                   cst.MAX_LEN_SHORT_URL, 
+                   cst.MAX_LEN_SHORT_URL,
                    message='Максимальная длина ссылки: 16 символов'),
             Regexp(cst.PATTERN,
                    message='Допускается только латиница и арабские цифры.')

@@ -28,5 +28,3 @@ def page_not_found(error):
 @app.errorhandler(HTTPStatus.INTERNAL_SERVER_ERROR)
 def server_error_page(error):
     return render_template('500.html'), HTTPStatus.INTERNAL_SERVER_ERROR
-
-
