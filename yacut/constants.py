@@ -6,7 +6,7 @@ SYMBOLS = f'{ascii_letters}{digits}'
 MAX_LEN_SHORT_URL = 16
 MIN_LEN_SHORT_URL = 1
 LEN_SHORT_URL = 6
-PATTERN = r'^[a-zA-Z0-9]{1,16}$'
+PATTERN = rf'^[{SYMBOLS}]+$'
 
 '''Сообщения'''
 NAME_BUSY = 'Имя {} уже занято!'
